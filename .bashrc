@@ -60,6 +60,7 @@ alias jb='ssh -A jumpbox'
 alias db='rlwrap sqlplus @/home/hslavchev/.sqlplusrc'
 alias vmdesktop='ssh -L 3389:itzo.org:3389 jumpbox'
 alias rdesktop='sudo rdesktop -u hslavchev -g 1280x900 localhost:3389'
+alias xdesktop="ssh -X -f -N -l hslavchev -L 5006:destination:22 jumpbox"
 alias topmemusage='ps aux | sort -nrk 4 | head'
 alias keyon='ssh-add -t 10800'
 alias keyoff='ssh-add -D'
@@ -69,4 +70,3 @@ alias dfh='\df -hP | column -t'
 alias dushmg='du -sh * 2>/dev/null | egrep "M|G"'
 alias epoch='date +%s'
 alias datetime='date +%Y%m%d%H%M'
-
