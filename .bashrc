@@ -11,6 +11,19 @@ screen)
   ;;
 esac
 
+### Typocatcher
+alias grpe='grep'
+alias gerp='grep'
+alias clera='clear'
+alias clar='clear'
+alias clesr='clear'
+alias claer='clear'
+alias clea='clear'
+alias cler='clear'
+alias vmi='vim'
+alias ssg='ssh'
+alias ssj='ssh'
+
 ### Prompt before rm/cp/mv
 alias rm='rm -i'
 alias cp='cp -i'
@@ -42,6 +55,7 @@ shopt -s checkwinsize
 ### Aliases
 alias sudo='echo "source ~hslavchev/.bashrc"; sudo'
 alias root='sudo su - root'
+alias cl='clear'
 alias jb='ssh -A jumpbox'
 alias db='rlwrap sqlplus @/home/hslavchev/.sqlplusrc'
 alias vmdesktop='ssh -L 3389:itzo.org:3389 jumpbox'
@@ -55,3 +69,4 @@ alias dfh='\df -hP | column -t'
 alias dushmg='du -sh * 2>/dev/null | egrep "M|G"'
 alias epoch='date +%s'
 alias datetime='date +%Y%m%d%H%M'
+
