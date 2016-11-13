@@ -1,0 +1,19 @@
+my_user/my_passwd
+set SPA 1
+set COLSEP |
+set linesize 300
+set pagesize 50000
+set long 50000
+column machine format A10
+column osuser format A10
+column billing_contact format A1
+column subject format A80
+column pattern format A40
+column note_id format A120
+set serveroutput on
+column PERSONALIZATION_DEFAULT format A5;
+column DEFAULT_VALUE format A10;
+column FIELD_VALUES format A10;
+column FORMAT format A10;
+column DATA_TYPE format A20;
+column FILENAME format A70;

@@ -1,0 +1,117 @@
+# Useful stuff
+unsetenv DISPLAY
+setenv LC_CTYPE en_US.UTF-8
+hardstatus on
+startup_message off
+deflogin on
+autodetach on
+vbell off
+defscrollback 9999
+defutf8 on
+nonblock on
+shelltitle ""
+
+# Style for Status bar
+#caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= %c"
+#caption always "%{-b}%{wk} %{+u}%H%{-u} | %{.kc}%-w%{+b}%{+u}%n %t%{-u}%{-b}%+w%{w} | %= %{.kc}%D %M %d, %Y%{-}  [ %{+b c}%c%{-} ]"
+caption always "%{-b}%{+u}%{ck}"
+hardstatus alwayslastline 
+hardstatus string "%{-u}%{-b}%{kw} %{+u}%H%{-u} | %{.kc}%-w%{+b}%{+u}%n %t%{-u}%{-b}%+w%{w} | %= %{.kc}%D %M %d, %Y%{-}  [ %{+b c}%c%{-} ]"
+
+# Screen messages
+sorendition "+b kG"
+activity "%c activity -> %n%f %t"
+bell "%c bell -> %n%f %t^G"
+vbell_msg " *beep* "
+
+# Change window with ctrl-left/right arrow
+#bindkey "^[[1;5D" prev
+#bindkey "^[[1;5C" next
+# change window with ALT-Q ALT-W (Linux)
+#bindkey "^[q" prev
+#bindkey "^[w" next
+# Change window with Shift-Left/Right Arrow (Mac)
+bindkey "^[[1;2D" prev
+bindkey "^[[1;2C" next
+
+bind 'W' windowlist
+
+# Startup sessions
+screen 0
+screen 1
+screen 2
+
+# Make shift-PgUp and shift-PgDn work like they do in xterm.  (Note that this
+# requires xterm to be configured to pass those keys through, and not try to
+# act on them itself.)
+bindkey "^[[5;2~" eval "copy" "stuff ^u"
+bindkey -m "^[[5;2~" stuff ^u
+bindkey -m "^[[6;2~" stuff ^d
+
+# Window numbering starts at 1, not 0.
+bind c screen 1
+bind 0 select 10
+
+# Login toggle is too close to screen redraw.  How about explicitly setting
+# login state, anyway?
+bind 'L'
+bind 'I' login on
+bind 'O' login off
+
+# It's sometimes useful to have a quote key.
+bind ^Q mapdefault
+bind q mapdefault
+
+# And since that leaves xon unbound, let's remove xoff, too.
+bind ^S
+
+# Using tab to move around regions gets annoying.  These help.
+bind ^j focus down
+bind ^k focus up
+bind ^t focus top
+bind ^b focus bottom
+
+# This lets me use specific commands from screen escape sequences.
+multiuser on
+aclchg :window: +x select
+
+# caption description:
+# caption always "%?%F%{-b bc}%:%{-b bb}%?%C|%D|%M %d|%H%?%F%{+u wb}%? %L=%-Lw%45>%{+b by}%n%f* %t%{-}%+Lw%-0<"
+#
+# Anything I don't describe is treated literally.
+#
+# %?          - Start of a conditional statement.
+#  %F         - Use this part of the statement if the window has focus (i.e. it
+#               is the only window or the currently active one).
+#  %{-b bc}   - Turn off bold, blue foreground, cyan background.
+# %:          - else
+#  %{-b bb}   - Turn off bold, blue foreground, blue background (this obscures
+#               the text on non-focused windows and just gives a blue line).
+# %?          - End conditional statement.
+#  %C         - time (hh:mm, leading space) in 12 hour format
+#  %D         - Three-letter day-of-week appreviation
+#  %M         - Three-letter month appreviation
+#  %d         - Day of the month
+#  %H         - hostname
+#  %?         - Start of conditional statement.
+#   %F        - Use this part of the statement if the window has focus.
+#   %{+u wb}  - underlined, white foreground, blue background
+#  %?         - End conditional (if not focused, text remaind blue on blue).
+#    %L=      - truncation/padding point.  With the 'L' qualifier, basically
+#               just acts as a reference point.  Further truncation/padding is
+#               done relative to here, not the beginning of the string
+#    %-Lw     - window list up to but not including the current window (-),
+#               show window flags (L)
+#    %45>     - truncation/padding marker; place this point about 45% of the
+#               way into the display area (45)
+#    %{+b by} - add bold (still underlined from before), blue foreground,
+#               yellow background
+#      %n     - number of the current window
+#      %f     - flags for current window
+#      %t     - title of current window
+#    %{-}     - undo last color change (so now we're back to underlined white
+#               on blue)  (technically, this is a pop; a second invocation
+#               would drop things back to unadorned blue on cyan)
+#    %+Lw     - window list from the next window on (-), show window flags (L)
+#    %-0<     - truncation/padding point.  Place this point zero spaces (0)
+#               from the right margin (-).
