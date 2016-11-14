@@ -39,3 +39,6 @@ nnoremap <C-H> <C-W><C-H>
 " Clear highlighting with ESC in normal mode
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
+
+" Use F12 to toggle paste on/off
+set pastetoggle=<F12>
