@@ -11,6 +11,9 @@ screen)
   ;;
 esac
 
+### Permissions
+umask 0022
+
 ### Typocatcher
 alias grpe='grep'
 alias gerp='grep'
