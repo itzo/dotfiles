@@ -56,8 +56,8 @@ shopt -s histappend
 shopt -s checkwinsize
 
 ### Aliases
-alias sudo='echo "source ~hslavchev/.bashrc"; sudo'
-alias root='sudo su - root'
+alias sudoing='echo "source ~hslavchev/.bashrc"; sudo'
+alias root='sudoing su - root'
 alias cl='clear'
 alias jb='ssh -A jumpbox'
 alias db='rlwrap sqlplus @/home/hslavchev/.sqlplusrc'
