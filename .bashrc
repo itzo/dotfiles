@@ -38,6 +38,7 @@ if [[ `uname` =~ Linux ]]; then
     eval "`dircolors`"
     alias ls='ls $COLOR'
     alias l='ls $COLOR -lA'
+    alias ll='ls $COLOR -lA'
     alias grep='grep $COLOR'
     alias fgrep='fgrep $COLOR'
     alias egrep='egrep $COLOR'
@@ -73,7 +74,7 @@ alias dfh='\df -hP | column -t'
 alias dushmg='du -sh * 2>/dev/null | egrep "M|G"'
 alias epoch='date +%s'
 alias datetime='date +%Y%m%d%H%M'
-alias repostatus='CDIR=`pwd`; for i in `ls ~/git/`; do echo "# ${i}:"; cd ~/git/$i ; git status -sb ; echo; done; cd $CDIR'
+alias repostatus='CDIR=`pwd`; for i in `ls ~/git/`; do echo "==> $HOME/git/${i}"; cd ~/git/$i ; git status -sb ; echo; done; cd $CDIR'
 
 alias gp='git pull'
 alias gb='git branch'
