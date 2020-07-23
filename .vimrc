@@ -6,70 +6,94 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+" jsonnet
 Plugin 'google/vim-jsonnet'
-" use hashtag instead of slash for comments
+" Use hashtag instead of slash for comments
 let g:jsonnet_fmt_on_save = 0
 let g:jsonnet_fmt_options = '--comment-style h'
+
+" terraform
 Plugin 'hashivim/vim-terraform'
-" terraform plugin to run terraform fmt
+" Terraform plugin to run terraform fmt
 let g:terraform_fmt_on_save=1
-" all plugins must be added before the following line
+
+" markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
+" All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 
-" Other configs
-" enable syntax highlighting
+
+" Show column numbers
+set ruler
+
+" Enable syntax highlighting
 syntax enable
 
-" show line numbers in dim colors
+" Show line numbers in dim colors
 "set number
 "highlight LineNr ctermfg=black ctermbg=NONE
 
-" set tabs to have 4 spaces
-set tabstop=4
-set softtabstop=4
+" Set tabs to have 4 spaces
+set tabstop=2
+set softtabstop=2
 
-" indent when moving to the next line while writing code
+" Indent when moving to the next line while writing code
 set autoindent
 
-" expand tabs into spaces
+" Expand tabs into spaces
 set expandtab
 
-" when using the >> or << commands, shift lines by 4 spaces
+" When using the >> or << commands, shift lines by 4 spaces
 set shiftwidth=4
 
-" show the matching part of the pair for [] {} and ()
+" Show the matching part of the pair for [] {} and ()
 set showmatch
 
-" set file format to unix to prevent copy/paste issues
+" Set file format to unix to prevent copy/paste issues
 set fileformat=unix
 
-" set encoding to UTF-8
+" Set encoding to UTF-8
 set encoding=utf-8
 
-" enable all Python syntax highlighting features
+" Enable all Python syntax highlighting features
 let python_highlight_all=1
 
-" split screen navigation with ctrl+hljk
+" Split screen navigation with ctrl+hljk
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" clear highlighting with ESC in normal mode
+" Clear highlighting with ESC in normal mode
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 
-" use F12 to toggle paste on/off
+" Use F12 to toggle paste on/off
 set pastetoggle=<F12>
 
-" set foldmethod to be able to fold (open/collapse) JSON for example
+" Set foldmethod to be able to fold (open/collapse) JSON for example
+" use zR to expand all folds
 autocmd FileType json setlocal foldmethod=syntax
-" set initial fold level (0 is all collapsed... 100 is all open)
+" Set initial fold level (0 is all collapsed... 100 is all open)
 set foldlevelstart=4
 
-" set vimdiff color scheme
+" Set vimdiff color scheme
 if &diff
     colorscheme industry
 endif
