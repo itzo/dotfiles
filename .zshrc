@@ -3,8 +3,16 @@ export PATH=$HOME/workspace/devops/tools:$PATH
 
 export ZSH="/Users/is/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
-plugins=(git)
+
+plugins=(
+    git
+    zsh-aws-vault
+    kube-ps1
+)
+
 source $ZSH/oh-my-zsh.sh
+
+PROMPT='$(kube_ps1) '$PROMPT
 
 # Terminal colors
 export LSCOLORS=ExGxBxDxCxEgEdxbxgxcac
@@ -41,10 +49,14 @@ source $(which assume-role)
 # Aliases
 alias datetime='date +%Y%m%d%H%M'
 alias k=kubectl
-alias kx=kubectx
+#alias kx="kubectx; $HOME/workspace/devops-helpers/kube-kops-aws-sync.sh"
+kx() {kubectx "$@"; $HOME/workspace/devops-helpers/kube-kops-aws-sync.sh}
 alias kns=kubens
 alias t=terraform
 alias tf=t
+alias kpods='k get pods --sort-by=.status.startTime'
 
 # Tokens
 
+# Enable asdf
+. /usr/local/opt/asdf/asdf.sh
