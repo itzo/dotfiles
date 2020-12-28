@@ -12,8 +12,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-PROMPT='$(kube_ps1) '$PROMPT
-
 # Terminal colors
 export LSCOLORS=ExGxBxDxCxEgEdxbxgxcac
 export LS_COLORS="di=1;34:ln=1;36:so=1;31:pi=1;33:ex=1;32:bd=1;34;46:cd=1;34;43:su=0;41:sg=0;46:tw=0;42:ow=30;42"
@@ -43,14 +41,20 @@ randpass() {
 # kubectl autocompletion
 source <(kubectl completion zsh)
 
-# assume-role https://github.com/coinbase/assume-role
-source $(which assume-role)
+# enable and customize kube-ps1 prompt
+PROMPT='$(kube_ps1) '$PROMPT
+get_cluster_short() {
+  echo "$1" | cut -d . -f1
+}
+KUBE_PS1_SYMBOL_ENABLE="false"
+KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
+
+# kubectx to call aws-vault and export kops vars
+kx() {kubectx "$@"; $HOME/workspace/devops-helpers/kube-kops-aws-sync.sh}
 
 # Aliases
 alias datetime='date +%Y%m%d%H%M'
 alias k=kubectl
-#alias kx="kubectx; $HOME/workspace/devops-helpers/kube-kops-aws-sync.sh"
-kx() {kubectx "$@"; $HOME/workspace/devops-helpers/kube-kops-aws-sync.sh}
 alias kns=kubens
 alias t=terraform
 alias tf=t
