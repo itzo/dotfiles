@@ -52,6 +52,11 @@ KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
 # kubectx to call aws-vault and export kops vars
 kx() {kubectx "$@"; $HOME/workspace/devops-helpers/kube-kops-aws-sync.sh}
 
+
+# aws-vault longer session
+export AWS_SESSION_TOKEN_TTL=36h
+export AWS_CHAINED_SESSION_TOKEN_TTL=36h
+
 # Aliases
 alias datetime='date +%Y%m%d%H%M'
 alias k=kubectl
