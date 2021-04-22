@@ -53,9 +53,11 @@ KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
 kx() {kubectx "$@"; $HOME/workspace/devops-helpers/kube-kops-aws-sync.sh}
 
 
-# aws-vault longer session
-export AWS_SESSION_TOKEN_TTL=36h
-export AWS_CHAINED_SESSION_TOKEN_TTL=36h
+# aws-vault get/renew the AWS env vars without creating a subshell
+ave() {
+  [ -n "$AWS_VAULT" ] && unset AWS_VAULT
+  eval "$(aws-vault exec $1 env | grep AWS_ | xargs -I{} echo export {})"
+}
 
 # Aliases
 alias datetime='date +%Y%m%d%H%M'
@@ -64,6 +66,7 @@ alias kns=kubens
 alias t=terraform
 alias tf=t
 alias kpods='k get pods --sort-by=.status.startTime'
+alias knodes='k get nodes --sort-by=.metadata.creationTimestamp'
 
 # Tokens
 
