@@ -61,12 +61,29 @@ ave() {
 
 # Aliases
 alias datetime='date +%Y%m%d%H%M'
+alias datez='date -u +"%Y-%m-%dT%H:%M:%SZ"'   # print ISO-8601 compliant date
 alias k=kubectl
 alias kns=kubens
 alias t=terraform
 alias tf=t
+alias switch-aws-config='~/.aws/switch-aws-config'
+alias kssh='ssh -i /Volumes/Keybase/team/akiunlocks.ato/SSH/kops-deploy_rsa -l ubuntu'
 alias kpods='k get pods --sort-by=.status.startTime'
+alias kjobs='k get jobs --sort-by=.metadata.creationTimestamp'
+alias kcj='k get cj --sort-by=.metadata.creationTimestamp'
 alias knodes='k get nodes --sort-by=.metadata.creationTimestamp'
+alias kpv='k get pv --sort-by=.metadata.creationTimestamp'
+alias kpvc='k get pvc --sort-by=.metadata.creationTimestamp'
+alias krestarts='k get pods --sort-by=".status.containerStatuses[0].restartCount"'
+alias kexport="yq d - 'metadata.resourceVersion' | yq d - 'metadata.uid' | yq d - 'metadata.managedFields' | yq d - 'metadata.annotations' | yq d - 'metadata.creationTimestamp' | yq d - 'metadata.selfLink'"
+alias kigs="knodes -o custom-columns=NAME:.metadata.name,IG:'.metadata.labels.kops\.k8s\.io/instancegroup'"
+alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif -S 1'
+
+
+# Delete word up to whitespace
+# e.g. "ip-10-116-53-238.us-west-2.compute.internal" will be deleted as one word
+# instead of stopping at "-" when using CTRL+W
+WORDCHARS+=':/.-'
 
 # Tokens
 
