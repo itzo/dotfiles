@@ -7,6 +7,11 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" Asynchronous Lint Engine (ALE) syntax checker (for shellcheck)
+" needs: brew install shellcheck
+" to make it easier to copy/paste use :set signcolumn=no
+Plugin 'dense-analysis/ale'
+
 " jsonnet
 Plugin 'google/vim-jsonnet'
 " Use hashtag instead of slash for comments
@@ -49,7 +54,7 @@ syntax enable
 "set number
 "highlight LineNr ctermfg=black ctermbg=NONE
 
-" Set tabs to have 4 spaces
+" Set tabs to have 2 spaces
 set tabstop=2
 set softtabstop=2
 
@@ -97,3 +102,6 @@ set foldlevelstart=4
 if &diff
     colorscheme industry
 endif
+
+" Hide left sidebar (from ALE linter plugin) for easier copy/paste
+set signcolumn=no
