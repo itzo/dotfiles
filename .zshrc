@@ -1,13 +1,12 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/workspace/devops/tools:$PATH
 
-export ZSH="/Users/is/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
 plugins=(
     git
-    zsh-aws-vault
-    kube-ps1
+    #zsh-aws-vault
+    #kube-ps1
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -19,7 +18,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}   # zsh to use the same co
 
 # pyenv
 if command -v pyenv 1>/dev/null 2>&1; then eval "$(pyenv init -)"; fi
-pyenv shell 3.8.1
+pyenv shell 3.9.6
 
 # Generate a random password and copy it to the clipboard
 # Very useful for generating a temporary token
@@ -38,26 +37,16 @@ randpass() {
     echo 'copied to clipboard!'
 }
 
-# kubectl autocompletion
-source <(kubectl completion zsh)
-
-# enable and customize kube-ps1 prompt
-PROMPT='$(kube_ps1) '$PROMPT
-get_cluster_short() {
-  echo "$1" | cut -d . -f1
-}
-KUBE_PS1_SYMBOL_ENABLE="false"
-KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
-
-# kubectx to call aws-vault and export kops vars
-kx() {kubectx "$@"; $HOME/workspace/devops-helpers/kube-kops-aws-sync.sh}
-
-
-# aws-vault get/renew the AWS env vars without creating a subshell
-ave() {
-  [ -n "$AWS_VAULT" ] && unset AWS_VAULT
-  eval "$(aws-vault exec $1 env | grep AWS_ | xargs -I{} echo export {})"
-}
+## kubectl autocompletion
+#source <(kubectl completion zsh)
+#
+## enable and customize kube-ps1 prompt
+#PROMPT='$(kube_ps1) '$PROMPT
+#get_cluster_short() {
+#  echo "$1" | cut -d . -f1
+#}
+#KUBE_PS1_SYMBOL_ENABLE="false"
+#KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
 
 # Aliases
 alias datetime='date +%Y%m%d%H%M'
@@ -66,8 +55,6 @@ alias k=kubectl
 alias kns=kubens
 alias t=terraform
 alias tf=t
-alias switch-aws-config='~/.aws/switch-aws-config'
-alias kssh='ssh -i /Volumes/Keybase/team/akiunlocks.ato/SSH/kops-deploy_rsa -l ubuntu'
 alias kpods='k get pods --sort-by=.status.startTime'
 alias kjobs='k get jobs --sort-by=.metadata.creationTimestamp'
 alias kcj='k get cj --sort-by=.metadata.creationTimestamp'
@@ -81,8 +68,7 @@ alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif -S 1'
 
 
 # Delete word up to whitespace
-# e.g. "ip-10-116-53-238.us-west-2.compute.internal" will be deleted as one word
-# instead of stopping at "-" when using CTRL+W
+# e.g. "ip-10-116-53-238.us-west-2.compute.internal" will be deleted as one word instead of stopping at "-" when using CTRL+W
 WORDCHARS+=':/.-'
 
 # Tokens
