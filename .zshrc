@@ -74,4 +74,4 @@ WORDCHARS+=':/.-'
 # Tokens
 
 # Enable asdf
-. /usr/local/opt/asdf/asdf.sh
+#. /usr/local/opt/asdf/asdf.sh
