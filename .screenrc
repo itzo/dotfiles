@@ -6,7 +6,7 @@ startup_message off
 deflogin on
 autodetach on
 vbell off
-defscrollback 9999
+defscrollback 100000
 defutf8 on
 nonblock on
 shelltitle ""
@@ -30,13 +30,14 @@ vbell_msg " *beep* "
 # change window with ALT-Q ALT-W (Linux)
 #bindkey "^[q" prev
 #bindkey "^[w" next
-# Change window with Shift-Left/Right Arrow (Mac)
+# Change window with Shift-Left/Right Arrow (MacOS)
 bindkey "^[[1;2D" prev
 bindkey "^[[1;2C" next
 
 bind 'W' windowlist
 
 # Startup sessions
+# Optionally, name it: screen -t TAB_NAME 0
 screen 0
 screen 1
 screen 2
