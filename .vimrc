@@ -7,10 +7,15 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" Asynchronous Lint Engine (ALE) syntax checker (for shellcheck)
-" needs: brew install shellcheck
-" to make it easier to copy/paste use :set signcolumn=no
+" Asynchronous Lint Engine (ALE) syntax checker (for shellcheck, yamllint,
+" pylint, etc.)
 Plugin 'dense-analysis/ale'
+" Hide left sidebar (from ALE linter plugin) for easier copy/paste
+set signcolumn=no
+" Disable errors shown with virtual text at end of line
+let g:ale_virtualtext_cursor = 'disabled'
+" Use relaxed yamllint config and disable line length check
+let g:ale_yaml_yamllint_options='-d "{extends: relaxed, rules: {line-length: disable}}"'
 
 " jsonnet
 Plugin 'google/vim-jsonnet'
@@ -41,7 +46,6 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-
 
 
 " Show column numbers
@@ -103,5 +107,12 @@ if &diff
     colorscheme industry
 endif
 
-" Hide left sidebar (from ALE linter plugin) for easier copy/paste
-set signcolumn=no
+" Fix backspace not working issue
+set backspace=indent,eol,start
+
+" Set column color at line length limit
+set colorcolumn=121
+
+" Always highlight unnecessary spaces in red
+:highlight ExtraWhitespace ctermbg=red guibg=red
+:match ExtraWhitespace /\s\+$/
