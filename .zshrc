@@ -18,7 +18,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}   # zsh to use the same co
 
 # pyenv
 if command -v pyenv 1>/dev/null 2>&1; then eval "$(pyenv init -)"; fi
-pyenv shell 3.10.4
+pyenv shell 3.12.3
 
 # Generate a random password and copy it to the clipboard
 # Very useful for generating a temporary token
